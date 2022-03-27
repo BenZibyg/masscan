@@ -111,4 +111,14 @@ errno_t gmtime_s(struct tm* _tm, const time_t *time);
 
 
 
-#endif
+#if defined(_MSC_VER) && (_MSC_VER == 1700)
+/*Visual Studio 2012*/
+# include <stdio.h>
+# include <string.h>
+# define strcasecmp _stricmp
+# define memcasecmp _memicmp
+# ifndef PRIu64
+# define PRIu64 "llu"
+# define PRId64 "lld"
+# define PRIx64 "llx"
+# endif
